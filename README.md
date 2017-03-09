@@ -15,7 +15,7 @@ SPI Flashメモリ上にファイルシステムを構築するドライバで�
 使用環境
 ========
 - SPIマスタが使用可能なMCU
-- NiosIIで全機能使用する場合は200kバイトのメモリ
+- NiosIIで全機能使用する場合は200kバイトのメモリ(HALおよびLFNのUNICODEテーブルを含む)
 - 16Mbit～2Gbitで4kバイトイレースに対応しているSPI Flash
 
 ソースコードは[PERIDOT Hostbridge](https://github.com/osafune/peridot_peripherals/tree/master/ip/peridot_hostbridge)のEPCS/EPCQにアクセスレジスタ用になっています。  
