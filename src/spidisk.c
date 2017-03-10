@@ -126,7 +126,7 @@
 #endif
 
 #if _USE_SPI_SATCACHE
- #include <stdlib.h>
+ #include <malloc.h>
  #define spiff_malloc(_x)		malloc(_x)				// メモリアロケータ 
  #define spiff_free(_x)			free(_x)
 #endif
@@ -142,9 +142,10 @@ DEF_SPIDISK *spidisk = NULL;	// SPIディスクハンドラ
 
 
 /*-----------------------------------------------------------------------*/
-/* Access to SPI device                                                  */
+/* SPI master peripheral handler                                         */
 /*-----------------------------------------------------------------------*/
 
+// SPIマスタペリフェラルの通信完了を待つ 
 static DWORD spi_waitready(void)
 {
 	DWORD res;
@@ -156,6 +157,7 @@ static DWORD spi_waitready(void)
 	return res;
 }
 
+// SPIマスタで1バイトの送受信を行う 
 static DWORD spi_transaction(
 	DWORD send
 )
@@ -164,6 +166,11 @@ static DWORD spi_transaction(
 	return spi_waitready();
 }
 
+
+
+/*-----------------------------------------------------------------------*/
+/* Access to SPI Flash device                                            */
+/*-----------------------------------------------------------------------*/
 
 static DRESULT spi_getinfo(
 	DWORD *memsize,
